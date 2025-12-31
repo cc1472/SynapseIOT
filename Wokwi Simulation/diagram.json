@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "author": "Chris Calvin",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -38.58,
+      "left": 321.37,
+      "attrs": {}
+    },
+    { "type": "wokwi-mpu6050", "id": "imu4", "top": 282.22, "left": -122.48, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 282.22, "left": -7.28, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu2", "top": 282.22, "left": 98.32, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu3", "top": 282.22, "left": 203.92, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": -28.8,
+      "left": -220.8,
+      "attrs": { "text": "SynapseIOT" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -43.2,
+      "left": 504.9,
+      "rotate": 90,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb2",
+      "top": 81.6,
+      "left": 514.5,
+      "rotate": 90,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "imu3:GND", "imu2:GND", "black", [ "v-19.2", "h-105.52" ] ],
+    [ "imu2:GND", "imu1:GND", "black", [ "v-19.2", "h-105.52" ] ],
+    [ "imu1:GND", "imu4:GND", "black", [ "v-19.2", "h-115.12" ] ],
+    [ "imu4:VCC", "imu1:VCC", "red", [ "v-38.4", "h115.28" ] ],
+    [ "imu1:VCC", "imu2:VCC", "red", [ "v-38.4", "h105.68" ] ],
+    [ "imu2:VCC", "imu3:VCC", "red", [ "v-38.4", "h105.68" ] ],
+    [ "imu3:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "imu3:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "imu4:SCL", "imu1:SCL", "green", [ "v-57.6", "h115.28" ] ],
+    [ "imu1:SCL", "imu2:SCL", "green", [ "v-57.6", "h105.68" ] ],
+    [ "imu2:SCL", "imu3:SCL", "green", [ "v-57.6", "h105.68" ] ],
+    [ "imu4:SDA", "imu1:SDA", "green", [ "v-67.2", "h0.08", "v0", "h115.2" ] ],
+    [ "imu1:SDA", "imu2:SDA", "green", [ "v-67.2", "h105.68" ] ],
+    [ "imu2:SDA", "imu3:SDA", "green", [ "v-67.2", "h105.68" ] ],
+    [ "imu4:AD0", "esp:4", "green", [ "v0" ] ],
+    [ "imu1:AD0", "esp:5", "green", [ "v0" ] ],
+    [ "imu2:AD0", "esp:6", "green", [ "v0" ] ],
+    [ "imu3:AD0", "esp:7", "green", [ "v0" ] ],
+    [ "imu3:SDA", "esp:8", "green", [ "v0" ] ],
+    [ "imu3:SCL", "esp:9", "green", [ "v0" ] ],
+    [ "rgb1:COM", "rgb2:COM", "green", [ "v0" ] ],
+    [ "rgb1:COM", "esp:GND.2", "green", [ "v0" ] ],
+    [ "rgb2:R", "esp:35", "green", [ "v0" ] ],
+    [ "rgb2:G", "esp:36", "green", [ "v1.3", "h-76.8", "v-28.8" ] ],
+    [ "rgb2:B", "esp:37", "green", [ "h-67.2", "v1.6" ] ],
+    [ "rgb1:R", "esp:38", "green", [ "v0", "h-76.8", "v96" ] ],
+    [ "rgb1:G", "esp:39", "green", [ "v1.3", "h-67.2", "v67.2" ] ],
+    [ "rgb1:B", "esp:40", "green", [ "h-57.6", "v49.6" ] ]
+  ],
+  "dependencies": {}
+}
